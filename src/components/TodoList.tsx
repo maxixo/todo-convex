@@ -40,6 +40,11 @@ export default function TodoList() {
   const [filter, setFilter] = useState<"all" | "active" | "completed">("all");
   const [search, setSearch] = useState("");
 
+  
+  // ✅ Ensure todos is always an array
+  const todoList = Array.isArray(todos) ? todos : [];
+
+
   // ✅ Memoized filtering
   const filtered = useMemo(() => {
     let list = [...todos];
@@ -96,16 +101,14 @@ export default function TodoList() {
     );
   }
 
-  // ✅ Reorder handler
-  const onReorderSave = async (newOrder: Todo[]) => {
-    try {
-      await reorder({
-        updates: newOrder.map((t, idx) => ({ id: t._id, order: idx })),
-      });
-    } catch (err) {
-      console.warn("Failed to reorder todos:", err);
-    }
-  };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+const onReorderSave = async (newOrder: Todo[] = []) => {
+  if (!Array.isArray(newOrder)) return;
+  await reorder({
+    updates: newOrder.map((t, idx) => ({ id: t._id, order: idx })),
+  });
+};
+
 
   // ✅ Main render
   return (

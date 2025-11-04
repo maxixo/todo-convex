@@ -9,6 +9,8 @@ export interface ThemeType {
   muted: string;
   danger: string;
   shadow: string;
+  surface: string; // Added for header title color
+  headerGradient: string[]; // Added for LinearGradient colors
 }
 
 export const lightTheme: ThemeType = {
@@ -20,6 +22,10 @@ export const lightTheme: ThemeType = {
   primary: "#6366F1",
   danger: "#EF4444",
   shadow: "rgba(16,24,40,0.08)",
+
+  // ✅ New additions
+  surface: "#FFFFFF",
+  headerGradient: ["#60A5FA", "#818CF8"], // light blue gradient
 };
 
 export const darkTheme: ThemeType = {
@@ -31,4 +37,8 @@ export const darkTheme: ThemeType = {
   muted: "#64748B",
   danger: "#EF4444",
   shadow: "rgba(16,24,40,0.08)",
+
+  // ✅ New additions
+  surface: "#F1F5F9",
+  headerGradient: ["#1E293B", "#475569"], // dark subtle gradient
 };

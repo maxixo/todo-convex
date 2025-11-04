@@ -1,9 +1,11 @@
 // src/components/Header.tsx
 import React from "react";
 import styled from "styled-components/native";
+import { ColorValue } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { ThemeToggle } from "./ThemeToggle";
 import { useTheme } from "styled-components/native";
+import type { ThemeType } from "../styles/theme";
 
 const Container = styled.View`
   padding-top: 28px;
@@ -16,7 +18,7 @@ const Title = styled.Text`
   font-size: 36px;
   letter-spacing: 8px;
   font-weight: 700;
-  color: ${({ theme }) => theme.surface};
+  color: ${({ theme }: { theme: ThemeType }) => theme.surface};
 `;
 
 const HeaderInner = styled.View`
@@ -28,14 +30,13 @@ const HeaderInner = styled.View`
 `;
 
 export const Header: React.FC = () => {
-  const theme: any = useTheme();
-  return (
-    <LinearGradient
-      colors={theme.headerGradient}
-      start={[0, 0]}
-      end={[1, 0]}
-      style={{ width: "100%" }}
-    >
+     const theme: any = useTheme(); 
+     return (
+       <LinearGradient 
+        colors={theme.headerGradient} 
+        start={[0, 0]}
+         end={[1, 0]}
+       style={{ width: "100%" }} >
       <Container>
         <HeaderInner>
           <Title accessibilityRole="header">TODO</Title>
